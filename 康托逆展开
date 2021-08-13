@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+ 
+void CantorReverse(int index,int *p,int n);  //康托展开逆用，判断给定的位置中的排列
+long int fac[]={1,1,2,6,24,120,720,5040,40320,362880}; //表示阶乘运算的结果
+//long int fac[]={0!,1!,2!,3!,4!,5!,6!,7!,8!,9!};
+ 
+int main(int argc,char *argv)
+{
+    int len=5; 
+    int *s=(int *)malloc(len*sizeof(int));
+    CantorReverse(96,s,len);  //有数字{12345}组成的所有排列中，求出第96个排列的顺序
+    for(int i=0;i<len;i++)
+        cout<<s[i];
+    cout<<endl;
+    free(s);
+    return 0;
+}
+void CantorReverse(int index,int *p,int n)
+{
+    index--;     //勿丢
+    int i,j;
+    bool hash[10]={0};
+    for(i=0;i<n;i++)
+    {
+        int tmp=index/fac[n-1-i];  //tmp表示有tmp个数字比当前位置上的数字小
+        for(j=0;j<=tmp;j++)
+            if(hash[j]) tmp++;
+        p[i]=tmp+1;
+        hash[tmp]=1; 
+        index%=fac[n-1-i];
+    }
+    return;
+}
