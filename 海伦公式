@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int a=3,b=4,c=5;
+	double p=0;
+	double S=0;
+	
+	p = (a+b+c)/2;
+	S = sqrt(p*(p-a)*(p-b)*(p-c));
+	
+	printf("S:%lf\n",S);
+	
+	return 0;
+}
